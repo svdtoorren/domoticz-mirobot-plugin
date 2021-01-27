@@ -27,7 +27,7 @@
 import os
 import sys
 
-module_paths = [x[0] for x in os.walk( os.path.join(os.path.dirname(__file__), '.', '.env/lib/') ) if x[0].endswith('site-packages') ]
+module_paths = [x[0] for x in os.walk( os.path.join(os.path.dirname(__file__), '.', '.env/lib/') ) if x[0].endswith('dist-packages') ]
 for mp in module_paths:
     sys.path.append(mp)
 
