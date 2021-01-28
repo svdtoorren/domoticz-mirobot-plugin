@@ -1,9 +1,33 @@
-#!/usr/bin/python3.6
+#
+#       Xiaomi Mi Robot Vacuum Plugin
+#       Author: mrin, 2017
+#
+"""
+<plugin key="xiaomi-mi-robot-vacuum" name="Xiaomi Mi Robot Vacuum" author="mrin" version="0.1.3" wikilink="https://github.com/mrin/domoticz-mirobot-plugin" externallink="">
+    <params>
+        <param field="Mode6" label="MIIOServer host:port" width="200px" required="true" default="127.0.0.1:22222"/>
+        <param field="Mode2" label="Update interval (sec)" width="30px" required="true" default="15"/>
+        <param field="Mode5" label="Fan Level Type" width="200px">
+            <options>
+                <option label="Standard (Quiet, Balanced, Turbo, Max)" value="selector" default="true"/>
+                <option label="Slider" value="dimmer"/>
+            </options>
+        </param>
+        <param field="Mode4" label="Debug" width="75px">
+            <options>
+                <option label="True" value="Debug" default="true"/>
+                <option label="False" value="Normal"/>
+            </options>
+        </param>
+    </params>
+</plugin>
+"""
+
 
 import os
 import sys
 
-module_paths = [x[0] for x in os.walk( os.path.join(os.path.dirname(__file__), '.', '.env/lib/') ) if x[0].endswith('dist-packages') ]
+module_paths = [x[0] for x in os.walk( os.path.join(os.path.dirname(__file__), '.', '.env/lib/') ) if x[0].endswith('site-packages') ]
 for mp in module_paths:
     sys.path.append(mp)
 
@@ -104,7 +128,7 @@ class BasePlugin:
                             Image=iconID).Create()
         elif self.fanSelectorUnit not in Devices and Parameters['Mode5'] == 'selector':
             Domoticz.Device(Name='Fan Level', Unit=self.fanSelectorUnit, TypeName='Selector Switch',
-                                Image=iconID, Options=self.fanOptions).Create()
+                            Image=iconID, Options=self.fanOptions).Create()
 
         if self.batteryUnit not in Devices:
             Domoticz.Device(Name='Battery', Unit=self.batteryUnit, TypeName='Custom', Image=iconID,
@@ -300,10 +324,10 @@ class BasePlugin:
 
 def UpdateDevice(Unit, nValue, sValue, BatteryLevel=255, AlwaysUpdate=False):
     if Unit not in Devices: return
-    if Devices[Unit].nValue != nValue\
-        or Devices[Unit].sValue != sValue\
-        or Devices[Unit].BatteryLevel != BatteryLevel\
-        or AlwaysUpdate == True:
+    if Devices[Unit].nValue != nValue \
+            or Devices[Unit].sValue != sValue \
+            or Devices[Unit].BatteryLevel != BatteryLevel \
+            or AlwaysUpdate == True:
 
         Devices[Unit].Update(nValue, str(sValue), BatteryLevel=BatteryLevel)
 
