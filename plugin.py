@@ -8,6 +8,7 @@ for mp in module_paths:
     sys.path.append(mp)
 
 import Domoticz
+sys.path.append('/usr/local/lib/python3.6/dist-packages')
 import msgpack
 
 
