@@ -1,28 +1,4 @@
-#       
-#       Xiaomi Mi Robot Vacuum Plugin
-#       Author: mrin, 2017
-#       
-"""
-<plugin key="xiaomi-mi-robot-vacuum" name="Xiaomi Mi Robot Vacuum" author="mrin" version="0.1.3" wikilink="https://github.com/mrin/domoticz-mirobot-plugin" externallink="">
-    <params>
-        <param field="Mode6" label="MIIOServer host:port" width="200px" required="true" default="127.0.0.1:22222"/>
-        <param field="Mode2" label="Update interval (sec)" width="30px" required="true" default="15"/>
-        <param field="Mode5" label="Fan Level Type" width="200px">
-            <options>
-                <option label="Standard (Quiet, Balanced, Turbo, Max)" value="selector" default="true"/>
-                <option label="Slider" value="dimmer"/>
-            </options>
-        </param>
-        <param field="Mode4" label="Debug" width="75px">
-            <options>
-                <option label="True" value="Debug" default="true"/>
-                <option label="False" value="Normal"/>
-            </options>
-        </param>
-    </params>
-</plugin>
-"""
-
+#!/usr/bin/python3
 
 import os
 import sys
